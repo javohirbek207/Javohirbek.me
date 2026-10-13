@@ -1,47 +1,83 @@
-# Javohirbek Maxmutov — Shaxsiy Portfolio
+# Javohirbek Maxmutov — Shaxsiy Portfolio (javohirbek.me)
 
-> **Minimalist & Zamonaviy Dasturchi Portfoliosi**  
-> Data Analyst & Web Developer
+> **Apple-inspired Minimalist & Modern Developer Portfolio**  
+> Dasturchi va Ma’lumotlar Tahlilchisi (Developer & Aspiring Data Analyst)
 
-Veb-sayt ortiqcha sun'iy ma'lumotlar va bo'rttirilgan elementlardan holi, toza, zamonaviy va insoniy uslubda qayta loyihalashtirildi. Faqat eng asosiy va kerakli bo'limlardan iborat:
+Ushbu portfolio veb-sayti **Javohirbek Maxmutov**ning dasturlash va ma’lumotlar tahlili yo‘nalishidagi ko‘nikmalari, amaliy loyihalari va tajribasini ish beruvchilar hamda hamkasblarga professional darajada taqdim etish uchun yaratilgan.
 
----
-
-## 🌟 Asosiy Bo'limlar
-
-1. **Asosiy Sahifa (Home / Intro)**
-   - Shaxsiy tanishtiruv: Javohirbek Maxmutov (Data Analyst & Web Developer).
-   - Qisqa va samimiy bio, faoliyat yo'nalishlari.
-   - Amaliy texnologiyalar to'plami (Python, SQL, Excel, Pandas, JavaScript, React, Node.js, PostgreSQL).
-   - Aloqa va portfoliosiga tezkor o'tish tugmalari.
-
-2. **Portfolio (Loyihalar)**
-   - **FocusAI**: Talabalar uchun o'quv rejasini tuzish va akademik natijalarni tahlil qilish tizimi (Python, Pandas, ML).
-   - **CareTrack Clinic MRMS**: Tibbiyot klinikalarida bemorlar va qabullarni boshqarish veb-tizimi (Node.js, PostgreSQL).
-   - **Data Analysis Projects**: Statistik tahlil, Pivot jadvallar va savdo o'sishi bo'yicha tahliliy loyiha (Python, Excel, SQL).
-   - **Telegram Bot**: Node.js asosidagi avtomatlashtirilgan Telegram bot xizmati.
-
-3. **Bog‘lanish (Contact)**
-   - To'g'ridan-to'g'ri aloqa kanallari: Telegram (@javohir_maxmudov), GitHub, Email, LinkedIn.
-   - Bir bosishda nusxalash va to'g'ridan-to'g'ri xabar qoldirish imkoniyati.
-
-4. **Ikki tilli tizim (O'zbek / English)**
-   - Barcha matnlar tabiiy va ravon o'zbek hamda ingliz tillarida taqdim etilgan.
+- **Domen:** [https://javohirbek.me](https://javohirbek.me)
+- **GitHub Repozitoriya:** [https://github.com/javohirbek207](https://github.com/javohirbek207)
+- **Email:** [javohirbekandjam@gmail.com](mailto:javohirbekandjam@gmail.com)
+- **Telegram:** [https://t.me/Javohirbek_Maxmutov](https://t.me/Javohirbek_Maxmutov)
 
 ---
 
-## 🛠 Texnologiyalar
+## 🌟 Asosiy Bo‘limlar
 
-- **Frontend:** React 18 (TypeScript), Vite 5
-- **Stillashtirish:** Tailwind CSS 3 (Apple Dark Palette)
+1. **Bosh Sahifa (Hero Section)**
+   - Javohirbek Maxmutov — Developer & Aspiring Data Analyst sifatida tanishtiruv.
+   - Ishonchli va ixcham bio, “Loyihalarimni ko‘rish” va “Men bilan bog‘lanish” tugmalari.
+   - Apple dark estetikasidagi nozik animatsiyali terminal/telemetriya vizual elementi.
+   - Asosiy texnologik stak nishonlari.
+
+2. **Men Haqimda (About Me)**
+   - Veb-dasturlash, ma’lumotlar bazalari va ma’lumotlar tahlili bo‘yicha samimiy, professional tanishtiruv.
+   - Soxta yillar yoki to‘qib chiqarilgan sertifikatlarsiz sof halol taqdimot.
+   - 3 ta asosiy yo‘nalish: Veb-dasturlash, Ma’lumotlar tahlili, Ma’lumotlar bazasi.
+
+3. **Ko‘nikmalar (Skills)**
+   - 5 ta aniq toifaga ajratilgan:
+     - **Programming:** Python, JavaScript, TypeScript
+     - **Frontend:** HTML, CSS, React
+     - **Backend:** Node.js, Express.js
+     - **Database:** PostgreSQL, SQL
+     - **Data Analytics:** Excel, Python, pandas, scikit-learn
+   - Sun’iy foizlarsiz, real amaliyotda qo‘llaniladigan texnologiyalar.
+
+4. **Tanlangan Loyihalar (Featured Projects)**
+   - **FocusAI:** Talabalar uchun o‘qish jarayonini rejalashtirish va natijalarni tahlil qilish (Python, Pandas, Scikit-learn).
+   - **CareTrack Clinic MRMS:** Klinikalar uchun tibbiy yozuvlar va qabullarni boshqarish tizimi (JavaScript, Node.js, Express.js, PostgreSQL).
+   - **Telegram Bot:** Node.js orqali xabarlarni qayta ishlash va avtomatlashtirish boti (JavaScript, Node.js, Telegram Bot API).
+   - Barcha loyihalar to‘g‘ridan-to‘g‘ri [github.com/javohirbek207](https://github.com/javohirbek207) ga ulanadi.
+
+5. **Bog‘lanish (Contact)**
+   - To‘g‘ridan-to‘g‘ri aloqa kartalari: Telegram, Email, GitHub.
+   - Bir bosishda nusxalash (copy to clipboard) imkoniyati.
+   - Xatoliklarni tekshiruvchi (validation) toza xabar qoldirish formasi.
+
+6. **Footer**
+   - Javohirbek Maxmutov ismi, dinamik joriy yil, bo‘limlarga tezkor havolalar va holat indikatori.
+
+7. **Lokalizatsiya (Uzbek / English)**
+   - Sayt tabiiy o‘zbek (lotin) va ingliz tillarida to‘liq ishlaydi.
+
+---
+
+## 🛠 Texnologik Stack
+
+- **Frontend kutubxonasi:** React 18 (TypeScript)
+- **Bilder:** Vite 5
+- **Stillashtirish:** Tailwind CSS 3 (Apple Dark Palette: `#050505`, `#101010`, `#39FF88`, `#00C853`)
+- **Shriftlar:** Geist & Geist Mono
 - **Ikonkalar:** Lucide React
 
 ---
 
-## 🚀 Ishga Tushirish
+## 🚀 O‘rnatish va Ishga Tushirish
 
+### 1. Bog‘liqliklarni o‘rnatish
 ```bash
 npm install
+```
+
+### 2. Dasturchi serverida ishga tushirish
+```bash
 npm run dev
 ```
-Brauzerda `http://localhost:5173` manzilida ochiladi.
+Sayt `http://localhost:3000` (yoki Vite ko‘rsatgan portda) ochiladi.
+
+### 3. Production uchun yig‘ish (Build)
+```bash
+npm run build
+```
+Yig‘ilgan statik fayllar `dist/` papkasida tayyor bo‘ladi.

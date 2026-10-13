@@ -4,13 +4,13 @@ import { contactInfo } from '../data/portfolioData';
 import { 
   Send, 
   Github, 
-  Linkedin, 
   Mail, 
   Copy, 
   Check, 
   ExternalLink,
   MapPin,
-  CheckCircle2
+  CheckCircle2,
+  AlertCircle
 } from 'lucide-react';
 
 export const Contact: React.FC = () => {
@@ -18,7 +18,7 @@ export const Contact: React.FC = () => {
   
   const [formData, setFormData] = useState({
     name: '',
-    contact: '',
+    email: '',
     message: ''
   });
   const [copiedField, setCopiedField] = useState<string | null>(null);
@@ -29,13 +29,23 @@ export const Contact: React.FC = () => {
   const handleCopy = (text: string, field: string) => {
     navigator.clipboard.writeText(text);
     setCopiedField(field);
-    setTimeout(() => setCopiedField(null), 2000);
+    setTimeout(() => setCopiedField(null), 2200);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name.trim() || !formData.contact.trim() || !formData.message.trim()) {
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
       setErrorMessage(t.contact.form.errorMsg);
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email.trim())) {
+      setErrorMessage(
+        language === 'uz'
+          ? "Iltimos, to‘g‘ri elektron pochta manzilini kiriting."
+          : "Please enter a valid email address."
+      );
       return;
     }
 
@@ -45,8 +55,8 @@ export const Contact: React.FC = () => {
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
-      setFormData({ name: '', contact: '', message: '' });
-      setTimeout(() => setIsSubmitted(false), 6000);
+      setFormData({ name: '', email: '', message: '' });
+      setTimeout(() => setIsSubmitted(false), 7000);
     }, 600);
   };
 
@@ -99,7 +109,7 @@ export const Contact: React.FC = () => {
               </a>
               <button
                 onClick={() => handleCopy(contactInfo.telegramUsername, 'telegram')}
-                aria-label="Nusxalash"
+                aria-label="Copy Telegram username"
                 className="p-2 rounded-lg text-content-muted hover:text-white transition-colors"
                 title={t.contact.copySuccess}
               >
@@ -129,7 +139,7 @@ export const Contact: React.FC = () => {
               </a>
               <button
                 onClick={() => handleCopy(contactInfo.email, 'email')}
-                aria-label="Nusxalash"
+                aria-label="Copy Email address"
                 className="p-2 rounded-lg text-content-muted hover:text-white transition-colors shrink-0"
                 title={t.contact.copySuccess}
               >
@@ -162,10 +172,20 @@ export const Contact: React.FC = () => {
               <ExternalLink className="w-4 h-4 text-content-subtle group-hover:text-white" />
             </a>
 
-            {/* Location */}
-            <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.05] flex items-center gap-2.5 text-xs text-content-muted font-mono">
-              <MapPin className="w-4 h-4 text-accent-emerald" />
-              <span>{contactInfo.location}</span>
+            {/* Location & Domain */}
+            <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.05] flex items-center justify-between text-xs text-content-muted font-mono">
+              <span className="flex items-center gap-2">
+                <MapPin className="w-3.5 h-3.5 text-accent-emerald" />
+                <span>{contactInfo.location}</span>
+              </span>
+              <a
+                href={contactInfo.domain}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent-neon hover:underline"
+              >
+                javohirbek.me
+              </a>
             </div>
           </div>
 
@@ -177,23 +197,25 @@ export const Contact: React.FC = () => {
               </h3>
 
               {isSubmitted ? (
-                <div className="p-5 rounded-xl bg-accent-neon/10 border border-accent-neon/30 text-accent-neon flex items-center gap-3">
+                <div className="p-5 rounded-xl bg-accent-neon/10 border border-accent-neon/30 text-accent-neon flex items-center gap-3 animate-fadeIn">
                   <CheckCircle2 className="w-5 h-5 shrink-0" />
                   <span className="text-sm">{t.contact.form.successMsg}</span>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} noValidate className="space-y-4">
                   {errorMessage && (
-                    <div className="text-xs font-mono text-red-400">
-                      {errorMessage}
+                    <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-xs font-mono text-red-400 flex items-center gap-2">
+                      <AlertCircle className="w-4 h-4 shrink-0" />
+                      <span>{errorMessage}</span>
                     </div>
                   )}
 
                   <div>
-                    <label className="block text-xs font-medium text-content-subtle mb-1.5">
-                      {t.contact.form.nameLabel}
+                    <label htmlFor="contact-name" className="block text-xs font-medium text-content-subtle mb-1.5 font-mono">
+                      {t.contact.form.nameLabel} <span className="text-accent-neon">*</span>
                     </label>
                     <input
+                      id="contact-name"
                       type="text"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -203,23 +225,25 @@ export const Contact: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-content-subtle mb-1.5">
-                      {t.contact.form.contactLabel}
+                    <label htmlFor="contact-email" className="block text-xs font-medium text-content-subtle mb-1.5 font-mono">
+                      {t.contact.form.emailLabel} <span className="text-accent-neon">*</span>
                     </label>
                     <input
-                      type="text"
-                      value={formData.contact}
-                      onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
-                      placeholder={t.contact.form.contactPlaceholder}
+                      id="contact-email"
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      placeholder={t.contact.form.emailPlaceholder}
                       className="w-full px-4 py-2.5 rounded-xl bg-[#121215] border border-white/10 text-white placeholder-content-subtle text-sm focus:outline-none focus:border-accent-neon/60 transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-content-subtle mb-1.5">
-                      {t.contact.form.messageLabel}
+                    <label htmlFor="contact-message" className="block text-xs font-medium text-content-subtle mb-1.5 font-mono">
+                      {t.contact.form.messageLabel} <span className="text-accent-neon">*</span>
                     </label>
                     <textarea
+                      id="contact-message"
                       rows={4}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -231,9 +255,9 @@ export const Contact: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3 rounded-xl bg-accent-neon hover:bg-[#4dff96] text-black font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-glow-sm disabled:opacity-50"
+                    className="w-full py-3 rounded-xl bg-accent-neon hover:bg-[#4dff96] text-black font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-glow-sm disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-accent-neon"
                   >
-                    <Send className="w-4 h-4" />
+                    <Send className={`w-4 h-4 ${isSubmitting ? 'animate-spin' : ''}`} />
                     <span>
                       {isSubmitting ? t.contact.form.sending : t.contact.form.sendBtn}
                     </span>

@@ -6,9 +6,9 @@ import {
   ExternalLink, 
   BrainCircuit, 
   HeartPulse, 
-  BarChart2, 
   Bot, 
-  FolderGit2
+  FolderGit2,
+  Sparkles
 } from 'lucide-react';
 
 export const Projects: React.FC = () => {
@@ -17,9 +17,8 @@ export const Projects: React.FC = () => {
 
   const filterOptions = [
     { key: 'all', label: t.projects.filterAll },
-    { key: 'analytics', label: 'Data Analytics' },
-    { key: 'fullstack', label: 'Full-Stack' },
     { key: 'ai', label: 'AI' },
+    { key: 'fullstack', label: 'Full-Stack' },
     { key: 'bot', label: 'Telegram' },
   ];
 
@@ -32,7 +31,6 @@ export const Projects: React.FC = () => {
     switch (key) {
       case 'ai': return <BrainCircuit className="w-4 h-4 text-accent-neon" />;
       case 'fullstack': return <HeartPulse className="w-4 h-4 text-accent-neon" />;
-      case 'analytics': return <BarChart2 className="w-4 h-4 text-accent-neon" />;
       case 'bot': return <Bot className="w-4 h-4 text-accent-neon" />;
       default: return <FolderGit2 className="w-4 h-4 text-accent-neon" />;
     }
@@ -65,7 +63,7 @@ export const Projects: React.FC = () => {
               <button
                 key={opt.key}
                 onClick={() => setSelectedFilter(opt.key)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all ${
                   selectedFilter === opt.key
                     ? 'bg-accent-neon text-black font-semibold shadow-glow-sm'
                     : 'bg-[#121214] text-content-muted hover:text-white border border-white/10'
@@ -78,11 +76,11 @@ export const Projects: React.FC = () => {
         </div>
 
         {/* Projects Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="rounded-2xl bg-[#0d0d10] border border-white/[0.08] hover:border-accent-neon/30 p-6 flex flex-col justify-between transition-all duration-200 group"
+              className="rounded-2xl bg-[#0d0d10] border border-white/[0.08] hover:border-accent-neon/30 p-6 flex flex-col justify-between transition-all duration-300 group"
             >
               <div>
                 {/* Category & Badge */}
@@ -93,6 +91,9 @@ export const Projects: React.FC = () => {
                       {project.category}
                     </span>
                   </div>
+                  <span className="text-[10px] font-mono text-content-subtle">
+                    Verified
+                  </span>
                 </div>
 
                 {/* Title & Tagline */}
@@ -104,7 +105,7 @@ export const Projects: React.FC = () => {
                 </p>
 
                 {/* Description */}
-                <p className="text-content-muted text-sm leading-relaxed mb-5">
+                <p className="text-content-muted text-xs sm:text-sm leading-relaxed mb-5">
                   {project.description}
                 </p>
               </div>
@@ -123,13 +124,13 @@ export const Projects: React.FC = () => {
                 </div>
 
                 {/* Action buttons */}
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2.5">
                   {project.githubUrl && (
                     <a
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 py-2 px-3.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 text-white text-xs font-medium flex items-center justify-center gap-2 transition-colors"
+                      className="flex-1 py-2 px-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 text-white text-xs font-medium flex items-center justify-center gap-2 transition-colors"
                     >
                       <Github className="w-3.5 h-3.5 text-accent-neon" />
                       <span>{t.projects.viewGithub}</span>
@@ -141,7 +142,7 @@ export const Projects: React.FC = () => {
                       href={project.demoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 py-2 px-3.5 rounded-xl bg-accent-neon hover:bg-[#4dff96] text-black text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+                      className="py-2 px-3 rounded-xl bg-accent-neon hover:bg-[#4dff96] text-black text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
                     >
                       <span>{t.projects.viewDemo}</span>
                       <ExternalLink className="w-3.5 h-3.5" />
