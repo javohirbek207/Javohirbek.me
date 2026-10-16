@@ -112,16 +112,12 @@
   display: none;
 }
 
-/* Touch-friendly tap targets */
+/* Touch-friendly tap targets without distorting inline elements */
 @media (pointer: coarse) {
-  a, button {
+  button:not(.btn-inline),
+  nav a,
+  .touch-target {
     min-height: 44px;
-    min-width: 44px;
-  }
-  /* Except for inline text links and tiny badges */
-  a.inline-link, span > a, p > a {
-    min-height: auto;
-    min-width: auto;
   }
 }
 

@@ -8,27 +8,27 @@ export const About: React.FC = () => {
   const cardIcons = [Code2, BarChart3, Database];
 
   return (
-    <section id="about" className="py-12 sm:py-20 relative bg-[#070709] border-t border-white/[0.06]">
+    <section id="about" className="py-16 sm:py-20 relative bg-[#070709] border-t border-white/[0.06]">
       {/* Subtle ambient light */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-80 h-80 bg-accent-neon/[0.025] blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col items-start mb-8 sm:mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 text-xs font-mono text-accent-neon mb-2.5 sm:mb-3">
+        <div className="flex flex-col items-start mb-10 sm:mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 text-xs font-mono text-accent-neon mb-3">
             <span>{t.about.badge}</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
             {t.about.title}
           </h2>
-          <p className="text-content-muted text-xs sm:text-sm md:text-base mt-2 max-w-xl leading-relaxed">
+          <p className="text-content-muted text-sm sm:text-base mt-2 max-w-xl leading-relaxed">
             {t.about.subtitle}
           </p>
         </div>
 
         {/* Narrative Box */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 items-start mb-8 sm:mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start mb-10 sm:mb-12">
           
           {/* Main Story */}
           <div className="lg:col-span-8 p-5 sm:p-7 rounded-2xl bg-[#0c0c0f] border border-white/[0.08] relative overflow-hidden space-y-3.5 sm:space-y-4 text-content-main leading-relaxed">

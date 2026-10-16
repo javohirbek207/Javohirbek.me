@@ -11,7 +11,7 @@ import { BackToTop } from './components/BackToTop';
 
 function PortfolioApp() {
   return (
-    <div className="min-h-screen bg-[#050505] text-[#F5F5F5] selection:bg-[#39FF88] selection:text-black antialiased relative">
+    <div className="min-h-screen bg-[#050505] text-[#F5F5F5] selection:bg-[#39FF88] selection:text-black antialiased relative overflow-x-hidden">
       {/* Subtle ambient light */}
       <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[250px] bg-gradient-to-b from-[#39FF88]/[0.025] to-transparent pointer-events-none z-0" />
       
