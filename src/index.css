@@ -19,6 +19,8 @@
     color-scheme: dark;
     -webkit-tap-highlight-color: transparent;
     font-family: var(--font-geist-sans);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   body {
@@ -36,24 +38,31 @@
     font-family: var(--font-geist-mono);
   }
 
-  /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+  /* Ensure inputs don't zoom on iOS */
+  input, textarea, select {
+    font-size: 16px;
   }
 
-  ::-webkit-scrollbar-track {
-    background: #050505;
-  }
+  /* Custom scrollbar (desktop only) */
+  @media (min-width: 768px) {
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
 
-  ::-webkit-scrollbar-thumb {
-    background: #222225;
-    border-radius: 9999px;
-    border: 2px solid #050505;
-  }
+    ::-webkit-scrollbar-track {
+      background: #050505;
+    }
 
-  ::-webkit-scrollbar-thumb:hover {
-    background: #39FF88;
+    ::-webkit-scrollbar-thumb {
+      background: #222225;
+      border-radius: 9999px;
+      border: 2px solid #050505;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #39FF88;
+    }
   }
 }
 
@@ -63,20 +72,6 @@
   background-image: 
     linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-}
-
-.bg-dot-pattern {
-  background-size: 24px 24px;
-  background-image: radial-gradient(rgba(57, 255, 136, 0.12) 1px, transparent 1px);
-}
-
-/* Radial ambient light glow */
-.ambient-glow {
-  background: radial-gradient(circle 500px at 50% 20%, rgba(57, 255, 136, 0.07), transparent 70%);
-}
-
-.ambient-glow-card {
-  background: radial-gradient(circle 250px at top left, rgba(57, 255, 136, 0.06), transparent 70%);
 }
 
 /* Apple style card border */
@@ -97,6 +92,37 @@
 .glow-border {
   border: 1px solid rgba(57, 255, 136, 0.25);
   box-shadow: 0 0 20px -3px rgba(57, 255, 136, 0.15);
+}
+
+/* Fade in animation for mobile menu etc */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Hide scrollbar helper for horizontal scroll (filter pills) */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Touch-friendly tap targets */
+@media (pointer: coarse) {
+  a, button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  /* Except for inline text links and tiny badges */
+  a.inline-link, span > a, p > a {
+    min-height: auto;
+    min-width: auto;
+  }
 }
 
 /* Accessibility: Reduced motion support */

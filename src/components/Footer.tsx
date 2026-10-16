@@ -31,14 +31,14 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-[#050505] border-t border-white/[0.08] text-content-muted py-10 relative">
+    <footer className="bg-[#050505] border-t border-white/[0.08] text-content-muted py-8 sm:py-10 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main row */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-white/[0.06]">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-6 pb-6 border-b border-white/[0.06]">
           {/* Brand & Identity */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-[#121215] border border-white/10 flex items-center justify-center font-mono font-bold text-accent-neon text-xs">
+            <div className="w-9 h-9 rounded-xl bg-[#121215] border border-white/10 flex items-center justify-center font-mono font-bold text-accent-neon text-xs">
               JM
             </div>
             <div>
@@ -52,13 +52,13 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Quick Nav Links */}
-          <nav className="flex flex-wrap items-center justify-center gap-4 text-xs font-medium">
+          <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs font-medium">
             {navLinks.map((link) => (
               <a
                 key={link.id}
                 href={`#${link.id}`}
                 onClick={(e) => scrollToSection(e, link.id)}
-                className="text-content-muted hover:text-white transition-colors"
+                className="py-1 px-1 text-content-muted hover:text-white active:text-accent-neon transition-colors"
               >
                 {link.label}
               </a>
@@ -66,13 +66,13 @@ export const Footer: React.FC = () => {
           </nav>
 
           {/* Social icons & Back to Top */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
             <a
               href={contactInfo.github}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="w-9 h-9 rounded-xl bg-[#101014] border border-white/10 hover:border-accent-neon/40 text-content-main hover:text-accent-neon flex items-center justify-center transition-colors"
+              className="w-10 h-10 rounded-xl bg-[#101014] border border-white/10 hover:border-accent-neon/40 active:bg-white/10 text-content-main hover:text-accent-neon flex items-center justify-center transition-colors"
             >
               <Github className="w-4 h-4" />
             </a>
@@ -81,14 +81,14 @@ export const Footer: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Telegram"
-              className="w-9 h-9 rounded-xl bg-[#101014] border border-white/10 hover:border-accent-neon/40 text-content-main hover:text-accent-neon flex items-center justify-center transition-colors"
+              className="w-10 h-10 rounded-xl bg-[#101014] border border-white/10 hover:border-accent-neon/40 active:bg-white/10 text-content-main hover:text-accent-neon flex items-center justify-center transition-colors"
             >
               <Send className="w-4 h-4" />
             </a>
             <a
               href={`mailto:${contactInfo.email}`}
               aria-label="Email"
-              className="w-9 h-9 rounded-xl bg-[#101014] border border-white/10 hover:border-accent-neon/40 text-content-main hover:text-accent-neon flex items-center justify-center transition-colors"
+              className="w-10 h-10 rounded-xl bg-[#101014] border border-white/10 hover:border-accent-neon/40 active:bg-white/10 text-content-main hover:text-accent-neon flex items-center justify-center transition-colors"
             >
               <Mail className="w-4 h-4" />
             </a>
@@ -97,10 +97,10 @@ export const Footer: React.FC = () => {
             <button
               onClick={scrollToTop}
               aria-label="Back to top"
-              className="ml-2 flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#121215] border border-white/10 text-xs font-mono text-content-muted hover:text-accent-neon transition-colors"
+              className="ml-1 h-10 flex items-center gap-1.5 px-3 rounded-xl bg-[#121215] border border-white/10 text-xs font-mono text-content-muted hover:text-accent-neon active:scale-95 transition-all"
             >
               <span>{language === 'uz' ? 'Yuqoriga' : 'Top'}</span>
-              <ArrowUp className="w-3 h-3" />
+              <ArrowUp className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>

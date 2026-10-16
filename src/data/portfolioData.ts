@@ -256,8 +256,8 @@ export const projectsData: Project[] = [
     description: "Talabalar uchun o‘qish jarayonini rejalashtirish, dars yuklamasini optimal taqsimlash va akademik natijalarni tahlil qilishga yo‘naltirilgan sun’iy intellekt asosidagi loyiha.",
     technologies: ["Python", "Pandas", "Scikit-learn"],
     githubUrl: "https://github.com/javohirbek207",
-    demoUrl: undefined,
-    isDemoAvailable: false
+    demoUrl: "https://prophetic-focus-ai-flow.base44.app/",
+    isDemoAvailable: true
   },
   {
     id: "caretrack",
