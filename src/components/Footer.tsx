@@ -43,7 +43,7 @@ export const Footer: React.FC = () => {
             </div>
             <div>
               <span className="text-sm font-semibold text-white block">
-                Javohirbek Maxmudov
+                Javohirbek Maxmutov
               </span>
               <span className="text-[11px] text-content-subtle font-mono">
                 Developer & Aspiring Data Analyst
@@ -108,7 +108,7 @@ export const Footer: React.FC = () => {
         {/* Bottom copyright row */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-content-subtle font-mono text-center sm:text-left">
           <div>
-            &copy; {currentYear} Javohirbek Maxmudov. {t.footer.rights}
+            &copy; {currentYear} Javohirbek Maxmutov. {t.footer.rights}
           </div>
 
           <div className="flex items-center gap-2 text-accent-emerald">

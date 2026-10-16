@@ -1,7 +1,7 @@
 import { Project, SkillCategory } from '../types';
 
 export const contactInfo = {
-  name: "Javohirbek Maxmudov",
+  name: "Javohirbek Maxmutov",
   github: "https://github.com/javohirbek207",
   githubUsername: "javohirbek207",
   email: "javohirbekandjam@gmail.com",
@@ -22,7 +22,7 @@ export const portfolioContent = {
       cta: "Aloqaga chiqish"
     },
     hero: {
-      badge: "Javohirbek Maxmudov",
+      badge: "Javohirbek Maxmutov",
       status: "Yangi imkoniyatlar uchun ochiq",
       headline: "Developer & Aspiring Data Analyst",
       subheadline: "Veb-dasturlash va ma’lumotlar tahlili",
@@ -44,7 +44,7 @@ export const portfolioContent = {
       badge: "Tanishuv",
       title: "Men haqimda",
       subtitle: "Qiziqishlar, maqsadlar va amaliy yo‘nalishlarim",
-      paragraph1: "Men Javohirbek Maxmudovman. Dasturlash va ma’lumotlar tahlili yo‘nalishlarida o‘z bilim va amaliy tajribamni muntazam rivojlantirib borayotgan yosh mutaxassisman.",
+      paragraph1: "Men Javohirbek Maxmutovman. Dasturlash va ma’lumotlar tahlili yo‘nalishlarida o‘z bilim va amaliy tajribamni muntazam rivojlantirib borayotgan yosh mutaxassisman.",
       paragraph2: "Veb-dasturlashda JavaScript, React va Node.js yordamida foydalanuvchilar uchun qulay va tezkor interfeyslar hamda REST API larni yaratishga e’tibor qarataman. Shu bilan birga, Python, SQL va Excel orqali ma’lumotlarni saralash, tahlil qilish va vizuallashtirish bo‘yicha amaliy ko‘nikmalarga egaman.",
       paragraph3: "Mening asosiy maqsadim — texnologiyalar va ma’lumotlar yordamida real hayotdagi muammolarga ishonchli, tushunarli va samarali yechimlar ishlab chiqish.",
       cards: [
@@ -112,7 +112,7 @@ export const portfolioContent = {
       cta: "Get in touch"
     },
     hero: {
-      badge: "Javohirbek Maxmudov",
+      badge: "Javohirbek Maxmutov",
       status: "Open to new opportunities",
       headline: "Developer & Aspiring Data Analyst",
       subheadline: "Web Development & Data Intelligence",
@@ -134,7 +134,7 @@ export const portfolioContent = {
       badge: "Overview",
       title: "About Me",
       subtitle: "My interests, vision, and technical focus areas",
-      paragraph1: "I am Javohirbek Maxmudov. An ambitious technologist continually honing my skills in software development and data analytics.",
+      paragraph1: "I am Javohirbek Maxmutov. An ambitious technologist continually honing my skills in software development and data analytics.",
       paragraph2: "In web development, I focus on building responsive user interfaces and RESTful backends using JavaScript, React, and Node.js. Concurrently, I work with Python, SQL, and Excel for structured data processing, exploratory analysis, and clear reporting.",
       paragraph3: "My objective is to build reliable, maintainable software and turn data into practical solutions that solve real-world problems.",
       cards: [

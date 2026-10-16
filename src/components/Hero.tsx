@@ -48,15 +48,20 @@ export const Hero: React.FC = () => {
           {/* Left Column */}
           <div className="lg:col-span-7 flex flex-col justify-center space-y-4 sm:space-y-6 text-left">
             
-            {/* Status Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md self-start">
-              <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-neon opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-neon"></span>
-              </span>
-              <span className="text-[11px] sm:text-xs font-mono font-medium text-white/90">
-                {t.hero.status}
-              </span>
+            {/* Name Badge & Status Badge */}
+            <div className="flex flex-wrap items-center gap-2.5">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-neon/10 border border-accent-neon/30 text-accent-neon text-xs font-mono font-semibold tracking-wider uppercase">
+                <span>{t.hero.badge}</span>
+              </div>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md">
+                <span className="flex h-2 w-2 relative">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-neon opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-neon"></span>
+                </span>
+                <span className="text-[11px] sm:text-xs font-mono font-medium text-white/90">
+                  {t.hero.status}
+                </span>
+              </div>
             </div>
 
             {/* Main Headline — responsive sizing */}
@@ -148,7 +153,7 @@ export const Hero: React.FC = () => {
                     <span className="text-purple-400">const</span> developer = &#123;
                   </div>
                   <div className="pl-3 sm:pl-4 text-content-muted">
-                    name: <span className="text-accent-neon">&quot;Javohirbek&quot;</span>,
+                    name: <span className="text-accent-neon">&quot;Javohirbek Maxmutov&quot;</span>,
                   </div>
                   <div className="pl-3 sm:pl-4 text-content-muted">
                     role: <span className="text-white">&quot;Developer & Analyst&quot;</span>,

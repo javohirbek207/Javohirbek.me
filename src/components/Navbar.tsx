@@ -89,7 +89,7 @@ export const Navbar: React.FC = () => {
             </div>
             <div className="flex flex-col min-w-0">
               <span className="text-[13px] sm:text-sm font-semibold tracking-tight text-white group-hover:text-accent-neon transition-colors truncate">
-                Javohirbek M.
+                Javohirbek Maxmutov
               </span>
               <span className="text-[10px] sm:text-[11px] text-content-subtle font-mono truncate hidden xs:block">
                 Developer & Data Analyst
