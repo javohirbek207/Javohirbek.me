@@ -1,27 +1,36 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { LanguageProvider } from './context/LanguageContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { ModalOverlay, ModalType } from './components/ModalOverlay';
+import { About } from './components/About';
+import { Skills } from './components/Skills';
+import { Projects } from './components/Projects';
+import { AnalyticsShowcase } from './components/AnalyticsShowcase';
+import { Contact } from './components/Contact';
+import { Footer } from './components/Footer';
+import { BackToTop } from './components/BackToTop';
 
 function PortfolioApp() {
-  const [activeModal, setActiveModal] = useState<ModalType>(null);
-
   return (
-    <div className="h-screen w-full bg-white text-zinc-900 selection:bg-black selection:text-white antialiased relative overflow-hidden">
-      {/* Navigation */}
-      <Navbar onOpenModal={(section) => setActiveModal(section as ModalType)} />
+    <div className="min-h-screen bg-white text-zinc-900 selection:bg-black selection:text-white antialiased relative overflow-x-hidden">
+      {/* Navigation Bar */}
+      <Navbar />
 
-      {/* Main Full-Screen Hero Dashboard (Pure Bazil.fr style: Only the Creator photo & dashboard) */}
-      <main className="h-full w-full">
-        <Hero onOpenModal={(section) => setActiveModal(section as ModalType)} />
+      {/* Main Page Flow */}
+      <main className="relative z-10">
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <AnalyticsShowcase />
+        <Contact />
       </main>
 
-      {/* Elegant Editorial Modal for Projects, About, Skills, Contact */}
-      <ModalOverlay
-        type={activeModal}
-        onClose={() => setActiveModal(null)}
-      />
+      {/* Footer */}
+      <Footer />
+
+      {/* Floating Back to Top Button */}
+      <BackToTop />
     </div>
   );
 }

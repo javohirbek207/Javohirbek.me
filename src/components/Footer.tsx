@@ -39,12 +39,12 @@ export const Footer: React.FC = () => {
           
           {/* Logo & Identity */}
           <div className="flex items-center gap-1.5">
-            <span className="font-sans font-bold text-xl tracking-tight text-zinc-950">
-              Javohirbek<span className="text-zinc-400">.</span>
+            <span className="font-sans font-bold text-lg sm:text-xl tracking-tight text-zinc-950">
+              Javohirbek Maxmutov<span className="text-zinc-400">.</span>
             </span>
             <span className="text-zinc-300 mx-1.5">•</span>
             <span className="text-xs text-zinc-500 font-mono">
-              Developer & Data Analyst
+              Creator & Data Analyst
             </span>
           </div>
 

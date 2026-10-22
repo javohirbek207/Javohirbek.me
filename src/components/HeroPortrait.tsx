@@ -270,28 +270,27 @@ export const HeroPortrait: React.FC<HeroPortraitProps> = ({ src, alt }) => {
   }, [src]);
 
   return (
-    <div className="relative group mx-auto select-none pointer-events-none w-full flex flex-col items-center justify-center">
-      {/* Symmetrical Ambient Backlight (Centered directly behind the face) */}
-      <div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -ml-2 sm:-ml-4 w-[85%] max-w-[700px] h-[85%] max-h-[700px] rounded-full bg-gradient-to-b from-zinc-200/40 via-zinc-100/20 to-transparent blur-3xl pointer-events-none -z-10 group-hover:from-zinc-300/40 transition-all duration-700" 
+    <div className="relative group select-none pointer-events-none w-full flex flex-col items-center justify-center">
+      {/* Ambient glow */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] max-w-[600px] h-[80%] max-h-[600px] rounded-full bg-gradient-to-b from-zinc-200/50 via-zinc-100/25 to-transparent blur-3xl pointer-events-none -z-10 group-hover:from-zinc-300/50 transition-all duration-700"
         aria-hidden="true"
       />
 
-      {/* Main Transparent Cutout Portrait (Centered, Optically Balanced) */}
-      <div className="relative w-full max-w-[340px] sm:max-w-[440px] md:max-w-[520px] lg:max-w-[620px] xl:max-w-[680px] h-[340px] sm:h-[420px] md:h-[490px] lg:h-[560px] xl:h-[620px] mx-auto flex items-end justify-center -translate-x-2 sm:-translate-x-4 md:-translate-x-5">
+      {/* Portrait — centered, large, fully visible within viewport */}
+      <div className="relative w-full max-w-[280px] sm:max-w-[380px] md:max-w-[460px] lg:max-w-[540px] xl:max-w-[600px] mx-auto flex items-end justify-center"
+        style={{ height: 'clamp(260px, 52vh, 560px)' }}
+      >
         <img
           src={cutoutSrc || src}
           alt={alt}
-          className={`w-full h-full ${
-            cutoutSrc ? 'object-contain object-bottom' : 'object-cover object-[70%_20%]'
-          } group-hover:scale-[1.015] group-hover:contrast-[1.04] transition-all duration-500 ease-out pointer-events-auto cursor-pointer ${
-            isLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`w-full h-full pointer-events-auto cursor-pointer transition-all duration-500 ease-out group-hover:scale-[1.012] group-hover:contrast-[1.04] ${
+            cutoutSrc ? 'object-contain object-bottom' : 'object-cover object-[center_10%]'
+          } ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
           style={{
-            // Softly dissolve the bottom of the coat into the white page
-            maskImage: 'linear-gradient(to bottom, black 82%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, black 82%, transparent 100%)',
-            filter: 'drop-shadow(0 16px 32px rgba(9, 9, 11, 0.08))',
+            maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
+            filter: 'drop-shadow(0 18px 36px rgba(9,9,11,0.09))',
           }}
         />
       </div>

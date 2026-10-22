@@ -75,7 +75,7 @@ export const AnalyticsShowcase: React.FC = () => {
   ];
 
   return (
-    <section id="analytics" className="py-20 sm:py-28 bg-zinc-50/50 border-t border-zinc-100">
+    <section id="analytics" className="py-24 sm:py-32 bg-white border-t border-zinc-200/80">
       <div className="max-w-4xl mx-auto px-6 sm:px-8">
         
         {/* Section Header */}
