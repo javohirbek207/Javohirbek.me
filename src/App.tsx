@@ -1,37 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LanguageProvider } from './context/LanguageContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { About } from './components/About';
-import { Skills } from './components/Skills';
-import { Projects } from './components/Projects';
-import { Contact } from './components/Contact';
-import { Footer } from './components/Footer';
-import { BackToTop } from './components/BackToTop';
+import { ModalOverlay, ModalType } from './components/ModalOverlay';
 
 function PortfolioApp() {
-  return (
-    <div className="min-h-screen bg-[#050505] text-[#F5F5F5] selection:bg-[#39FF88] selection:text-black antialiased relative overflow-x-hidden">
-      {/* Subtle ambient light */}
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[250px] bg-gradient-to-b from-[#39FF88]/[0.025] to-transparent pointer-events-none z-0" />
-      
-      {/* Navigation */}
-      <Navbar />
+  const [activeModal, setActiveModal] = useState<ModalType>(null);
 
-      {/* Main Content Sections: Hero -> About -> Skills -> Projects -> Contact */}
-      <main className="relative z-10">
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
+  return (
+    <div className="h-screen w-full bg-white text-zinc-900 selection:bg-black selection:text-white antialiased relative overflow-hidden">
+      {/* Navigation */}
+      <Navbar onOpenModal={(section) => setActiveModal(section as ModalType)} />
+
+      {/* Main Full-Screen Hero Dashboard (Pure Bazil.fr style: Only the Creator photo & dashboard) */}
+      <main className="h-full w-full">
+        <Hero onOpenModal={(section) => setActiveModal(section as ModalType)} />
       </main>
 
-      {/* Footer */}
-      <Footer />
-
-      {/* Floating Back to Top Button */}
-      <BackToTop />
+      {/* Elegant Editorial Modal for Projects, About, Skills, Contact */}
+      <ModalOverlay
+        type={activeModal}
+        onClose={() => setActiveModal(null)}
+      />
     </div>
   );
 }

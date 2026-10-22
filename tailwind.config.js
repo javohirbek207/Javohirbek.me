@@ -8,49 +8,50 @@ export default {
   theme: {
     extend: {
       colors: {
-        dark: {
-          bg: '#050505',
-          secondary: '#101010',
-          card: '#121214',
-          cardHover: '#18181B',
-          border: 'rgba(255, 255, 255, 0.08)',
-          borderHover: 'rgba(57, 255, 136, 0.3)',
-        },
-        accent: {
-          neon: '#39FF88',
-          emerald: '#00C853',
-          darkEmerald: '#007A33',
-          glow: 'rgba(57, 255, 136, 0.15)',
+        editorial: {
+          bg: '#ffffff',
+          surface: '#fafafa',
+          subtle: '#f4f4f5',
+          border: '#e4e4e7',
+          borderDark: '#18181b',
+          dark: '#000000',
+          text: '#09090b',
+          muted: '#52525b',
+          dim: '#71717a',
         },
         content: {
-          main: '#F5F5F5',
-          muted: '#A1A1AA',
-          subtle: '#71717A',
+          main: '#09090b',
+          muted: '#52525b',
+          subtle: '#71717a',
         }
       },
       fontFamily: {
-        sans: ['Geist', 'Geist Sans', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
-        mono: ['Geist Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+        sans: ['Geist', '"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        mono: ['"Geist Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+        display: ['Geist', '"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+      },
+      fontSize: {
+        'hero-fluid': 'clamp(2.75rem, 8.5vw, 6.75rem)',
+        'hero-sub-fluid': 'clamp(2.5rem, 8vw, 6.25rem)',
+        'section-fluid': 'clamp(2rem, 5vw, 3.5rem)',
       },
       boxShadow: {
-        'glow-sm': '0 0 15px rgba(57, 255, 136, 0.15)',
-        'glow-md': '0 0 30px rgba(57, 255, 136, 0.22)',
-        'glow-lg': '0 0 50px rgba(57, 255, 136, 0.3)',
-        'apple-card': '0 8px 32px 0 rgba(0, 0, 0, 0.5)',
+        'soft-sm': '0 1px 2px rgba(0, 0, 0, 0.04)',
+        'soft-md': '0 4px 16px rgba(0, 0, 0, 0.05)',
+        'soft-lg': '0 12px 32px rgba(0, 0, 0, 0.06)',
+      },
+      letterSpacing: {
+        'tightest': '-0.04em',
+        'tighter': '-0.025em',
+        'widest-pill': '0.15em',
       },
       animation: {
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'float': 'float 6s ease-in-out infinite',
-        'glow-pulse': 'glowPulse 3s ease-in-out infinite',
+        'fade-in': 'fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
       },
       keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-8px)' },
-        },
-        glowPulse: {
-          '0%, 100%': { opacity: '0.4' },
-          '50%': { opacity: '0.8' },
+        fadeIn: {
+          from: { opacity: '0', transform: 'translateY(8px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
         }
       }
     },

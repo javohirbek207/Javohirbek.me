@@ -10,7 +10,8 @@ import {
   ExternalLink,
   MapPin,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  ArrowUpRight
 } from 'lucide-react';
 
 export const Contact: React.FC = () => {
@@ -29,7 +30,7 @@ export const Contact: React.FC = () => {
   const handleCopy = (text: string, field: string) => {
     navigator.clipboard.writeText(text);
     setCopiedField(field);
-    setTimeout(() => setCopiedField(null), 2200);
+    setTimeout(() => setCopiedField(null), 2000);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -63,7 +64,7 @@ export const Contact: React.FC = () => {
           name: formData.name.trim(),
           email: formData.email.trim(),
           message: formData.message.trim(),
-          _subject: `Portfolio saytidan yangi xabar: ${formData.name.trim()}`,
+          _subject: `Portfolio message from: ${formData.name.trim()}`,
           _template: 'table'
         })
       });
@@ -71,7 +72,7 @@ export const Contact: React.FC = () => {
       if (response.ok) {
         setIsSubmitted(true);
         setFormData({ name: '', email: '', message: '' });
-        setTimeout(() => setIsSubmitted(false), 8000);
+        setTimeout(() => setIsSubmitted(false), 7000);
       } else {
         throw new Error('Yuborishda xatolik yuz berdi');
       }
@@ -87,206 +88,188 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-16 sm:py-20 relative bg-[#050505] border-t border-white/[0.06]">
-      {/* Subtle ambient light */}
-      <div className="absolute bottom-0 right-1/4 w-[450px] h-[350px] bg-accent-neon/[0.03] blur-[150px] rounded-full pointer-events-none" />
-
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="contact" className="py-20 sm:py-28 bg-white border-t border-zinc-100">
+      <div className="max-w-4xl mx-auto px-6 sm:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col items-start mb-10 sm:mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 text-xs font-mono text-accent-neon mb-3">
-            <span>{t.contact.badge}</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+        <div className="mb-12 sm:mb-16">
+          <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 block mb-2">
+            {t.contact.tag}
+          </span>
+          <h2 className="font-sans font-extrabold text-2xl sm:text-3xl lg:text-4xl text-zinc-950 tracking-tight mb-2">
             {t.contact.title}
           </h2>
-          <p className="text-content-muted text-sm sm:text-base mt-2 max-w-xl leading-relaxed">
+          <p className="text-zinc-500 text-sm">
             {t.contact.subtitle}
           </p>
         </div>
 
-        {/* Contact Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
+        {/* Contact Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
           
-          {/* Left Column: Direct Channels */}
-          <div className="lg:col-span-5 space-y-3.5 sm:space-y-4">
-            <h3 className="text-xs font-semibold text-content-subtle uppercase tracking-wider mb-1 sm:mb-2">
-              {t.contact.directTitle}
+          {/* Left Column: Direct Links & Info */}
+          <div className="md:col-span-5 space-y-4">
+            <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-400 block mb-1">
+              {language === 'uz' ? 'To‘g‘ridan-to‘g‘ri aloqa' : 'Direct Channels'}
             </h3>
 
-            {/* Telegram Card */}
-            <div className="p-3.5 sm:p-4 rounded-xl bg-[#0d0d10] border border-white/[0.08] hover:border-accent-neon/30 active:border-accent-neon/40 flex items-center justify-between transition-colors">
+            <div className="space-y-3">
+              {/* Email */}
+              <div className="p-4 rounded-xl border border-zinc-200/80 hover:border-zinc-400 transition-colors flex items-center justify-between">
+                <a
+                  href={`mailto:${contactInfo.email}`}
+                  className="flex items-center gap-3 min-w-0 flex-1 mr-2 group"
+                >
+                  <Mail className="w-4 h-4 text-zinc-400 group-hover:text-zinc-950 shrink-0 transition-colors" />
+                  <div className="min-w-0">
+                    <span className="text-[11px] font-mono uppercase text-zinc-400 block">Email</span>
+                    <span className="text-sm font-medium text-zinc-950 truncate block group-hover:underline">
+                      {contactInfo.email}
+                    </span>
+                  </div>
+                </a>
+                <button
+                  onClick={() => handleCopy(contactInfo.email, 'email')}
+                  aria-label="Copy email"
+                  className="w-8 h-8 rounded-full border border-zinc-200 hover:border-zinc-950 flex items-center justify-center text-zinc-500 hover:text-zinc-950 transition-colors shrink-0"
+                  title={t.contact.copySuccess}
+                >
+                  {copiedField === 'email' ? (
+                    <Check className="w-3.5 h-3.5 text-emerald-600" />
+                  ) : (
+                    <Copy className="w-3.5 h-3.5" />
+                  )}
+                </button>
+              </div>
+
+              {/* GitHub */}
+              <a
+                href={contactInfo.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-4 rounded-xl border border-zinc-200/80 hover:border-zinc-400 transition-colors flex items-center justify-between group"
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  <Github className="w-4 h-4 text-zinc-400 group-hover:text-zinc-950 shrink-0 transition-colors" />
+                  <div className="min-w-0">
+                    <span className="text-[11px] font-mono uppercase text-zinc-400 block">GitHub</span>
+                    <span className="text-sm font-medium text-zinc-950 truncate block group-hover:underline">
+                      {contactInfo.githubUsername}
+                    </span>
+                  </div>
+                </div>
+                <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:text-zinc-950 shrink-0 transition-colors" />
+              </a>
+
+              {/* Telegram */}
               <a
                 href={contactInfo.telegram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 group min-w-0 flex-1 mr-2"
+                className="p-4 rounded-xl border border-zinc-200/80 hover:border-zinc-400 transition-colors flex items-center justify-between group"
               >
-                <div className="w-10 h-10 rounded-lg bg-[#141418] border border-white/10 flex items-center justify-center text-accent-neon shrink-0">
-                  <Send className="w-4 h-4" />
-                </div>
-                <div className="min-w-0">
-                  <div className="text-xs text-content-subtle font-mono">Telegram</div>
-                  <div className="text-xs sm:text-sm font-semibold text-white group-hover:text-accent-neon transition-colors truncate">
-                    {contactInfo.telegramUsername}
+                <div className="flex items-center gap-3 min-w-0">
+                  <Send className="w-4 h-4 text-zinc-400 group-hover:text-zinc-950 shrink-0 transition-colors" />
+                  <div className="min-w-0">
+                    <span className="text-[11px] font-mono uppercase text-zinc-400 block">Telegram</span>
+                    <span className="text-sm font-medium text-zinc-950 truncate block group-hover:underline">
+                      {contactInfo.telegramUsername}
+                    </span>
                   </div>
                 </div>
+                <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:text-zinc-950 shrink-0 transition-colors" />
               </a>
-              <button
-                onClick={() => handleCopy(contactInfo.telegramUsername, 'telegram')}
-                aria-label="Copy Telegram username"
-                className="w-10 h-10 rounded-lg text-content-muted hover:text-white active:bg-white/10 flex items-center justify-center transition-colors shrink-0"
-                title={t.contact.copySuccess}
-              >
-                {copiedField === 'telegram' ? (
-                  <Check className="w-4 h-4 text-accent-neon" />
-                ) : (
-                  <Copy className="w-4 h-4" />
-                )}
-              </button>
             </div>
 
-            {/* Email Card */}
-            <div className="p-3.5 sm:p-4 rounded-xl bg-[#0d0d10] border border-white/[0.08] hover:border-accent-neon/30 active:border-accent-neon/40 flex items-center justify-between transition-colors">
-              <a
-                href={`mailto:${contactInfo.email}`}
-                className="flex items-center gap-3 group min-w-0 flex-1 mr-2"
-              >
-                <div className="w-10 h-10 rounded-lg bg-[#141418] border border-white/10 flex items-center justify-center text-accent-neon shrink-0">
-                  <Mail className="w-4 h-4" />
-                </div>
-                <div className="min-w-0">
-                  <div className="text-xs text-content-subtle font-mono">Email</div>
-                  <div className="text-xs sm:text-sm font-semibold text-white group-hover:text-accent-neon transition-colors truncate">
-                    {contactInfo.email}
-                  </div>
-                </div>
-              </a>
-              <button
-                onClick={() => handleCopy(contactInfo.email, 'email')}
-                aria-label="Copy Email address"
-                className="w-10 h-10 rounded-lg text-content-muted hover:text-white active:bg-white/10 flex items-center justify-center transition-colors shrink-0"
-                title={t.contact.copySuccess}
-              >
-                {copiedField === 'email' ? (
-                  <Check className="w-4 h-4 text-accent-neon" />
-                ) : (
-                  <Copy className="w-4 h-4" />
-                )}
-              </button>
-            </div>
-
-            {/* GitHub Card */}
-            <a
-              href={contactInfo.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3.5 sm:p-4 rounded-xl bg-[#0d0d10] border border-white/[0.08] hover:border-accent-neon/30 active:border-accent-neon/40 flex items-center justify-between transition-colors group"
-            >
-              <div className="flex items-center gap-3 min-w-0">
-                <div className="w-10 h-10 rounded-lg bg-[#141418] border border-white/10 flex items-center justify-center text-accent-neon shrink-0">
-                  <Github className="w-4 h-4" />
-                </div>
-                <div className="min-w-0">
-                  <div className="text-xs text-content-subtle font-mono">GitHub</div>
-                  <div className="text-xs sm:text-sm font-semibold text-white group-hover:text-accent-neon transition-colors truncate">
-                    {contactInfo.githubUsername}
-                  </div>
-                </div>
-              </div>
-              <ExternalLink className="w-4 h-4 text-content-subtle group-hover:text-white shrink-0" />
-            </a>
-
-            {/* Location & Domain */}
-            <div className="p-3 sm:p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.05] flex items-center justify-between text-xs text-content-muted font-mono flex-wrap gap-2">
-              <span className="flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5 text-accent-emerald" />
-                <span>{contactInfo.location}</span>
+            {/* Location & Website */}
+            <div className="pt-4 border-t border-zinc-100 flex items-center justify-between text-xs font-mono text-zinc-500">
+              <span className="flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5 text-zinc-400" />
+                <span>{language === 'uz' ? contactInfo.location : contactInfo.locationEn}</span>
               </span>
               <a
                 href={contactInfo.domain}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent-neon hover:underline"
+                className="text-zinc-950 hover:underline"
               >
                 javohirbek.me
               </a>
             </div>
           </div>
 
-          {/* Right Column: Clean Message Form */}
-          <div className="lg:col-span-7">
-            <div className="rounded-2xl bg-[#0d0d10] border border-white/[0.08] p-5 sm:p-7">
-              <h3 className="text-base sm:text-lg font-bold text-white mb-4">
+          {/* Right Column: Functional Message Form */}
+          <div className="md:col-span-7">
+            <div className="rounded-2xl border border-zinc-200/80 p-5 sm:p-7 bg-zinc-50/50">
+              <h3 className="font-sans font-bold text-lg sm:text-xl text-zinc-950 mb-6">
                 {t.contact.form.title}
               </h3>
 
               {isSubmitted ? (
-                <div className="p-4 sm:p-5 rounded-xl bg-accent-neon/10 border border-accent-neon/30 text-accent-neon flex items-center gap-3 animate-fadeIn">
-                  <CheckCircle2 className="w-5 h-5 shrink-0" />
-                  <span className="text-xs sm:text-sm">{t.contact.form.successMsg}</span>
+                <div className="p-5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950 flex items-center gap-3 animate-fade-in">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                  <span className="text-sm font-medium">{t.contact.form.successMsg}</span>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} noValidate className="space-y-4">
                   {errorMessage && (
-                    <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-xs font-mono text-red-400 flex items-center gap-2">
-                      <AlertCircle className="w-4 h-4 shrink-0" />
+                    <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-xs text-red-900 flex items-center gap-2">
+                      <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
                       <span>{errorMessage}</span>
                     </div>
                   )}
 
                   <div>
-                    <label htmlFor="contact-name" className="block text-xs font-medium text-content-subtle mb-1.5 font-mono">
-                      {t.contact.form.nameLabel} <span className="text-accent-neon">*</span>
+                    <label htmlFor="name" className="block text-xs font-mono uppercase text-zinc-500 mb-1.5">
+                      {t.contact.form.nameLabel} <span className="text-red-500">*</span>
                     </label>
                     <input
-                      id="contact-name"
+                      id="name"
                       type="text"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder={t.contact.form.namePlaceholder}
-                      className="w-full min-h-[48px] px-4 py-3 rounded-xl bg-[#121215] border border-white/10 text-white placeholder-content-subtle text-base sm:text-sm focus:outline-none focus:border-accent-neon/60 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-white border border-zinc-200 text-zinc-950 text-sm placeholder-zinc-400 focus:outline-none focus:border-zinc-950 transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="contact-email" className="block text-xs font-medium text-content-subtle mb-1.5 font-mono">
-                      {t.contact.form.emailLabel} <span className="text-accent-neon">*</span>
+                    <label htmlFor="email" className="block text-xs font-mono uppercase text-zinc-500 mb-1.5">
+                      {t.contact.form.emailLabel} <span className="text-red-500">*</span>
                     </label>
                     <input
-                      id="contact-email"
+                      id="email"
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder={t.contact.form.emailPlaceholder}
-                      className="w-full min-h-[48px] px-4 py-3 rounded-xl bg-[#121215] border border-white/10 text-white placeholder-content-subtle text-base sm:text-sm focus:outline-none focus:border-accent-neon/60 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-white border border-zinc-200 text-zinc-950 text-sm placeholder-zinc-400 focus:outline-none focus:border-zinc-950 transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="contact-message" className="block text-xs font-medium text-content-subtle mb-1.5 font-mono">
-                      {t.contact.form.messageLabel} <span className="text-accent-neon">*</span>
+                    <label htmlFor="message" className="block text-xs font-mono uppercase text-zinc-500 mb-1.5">
+                      {t.contact.form.messageLabel} <span className="text-red-500">*</span>
                     </label>
                     <textarea
-                      id="contact-message"
+                      id="message"
                       rows={4}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder={t.contact.form.messagePlaceholder}
-                      className="w-full px-4 py-3 rounded-xl bg-[#121215] border border-white/10 text-white placeholder-content-subtle text-base sm:text-sm focus:outline-none focus:border-accent-neon/60 transition-colors resize-none"
+                      className="w-full px-4 py-3 rounded-xl bg-white border border-zinc-200 text-zinc-950 text-sm placeholder-zinc-400 focus:outline-none focus:border-zinc-950 transition-colors resize-none"
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full min-h-[50px] py-3.5 rounded-xl bg-accent-neon hover:bg-[#4dff96] active:scale-[0.98] text-black font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-glow-sm disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-accent-neon"
+                    className="btn-dark w-full py-3.5 text-sm font-medium tracking-tight flex items-center justify-center gap-2 shadow-sm disabled:opacity-50 active:scale-[0.98]"
                   >
-                    <Send className={`w-4 h-4 ${isSubmitting ? 'animate-spin' : ''}`} />
                     <span>
                       {isSubmitting ? t.contact.form.sending : t.contact.form.sendBtn}
                     </span>
+                    <ArrowUpRight className={`w-4 h-4 ${isSubmitting ? 'animate-spin' : ''}`} />
                   </button>
                 </form>
               )}
