@@ -26,12 +26,12 @@ export const portfolioContent = {
       intro: "👋 Salom, men Javohirbek Maxmutovman",
       headlineLine1: "Creator",
       headlineLine2: "& Data Analyst",
-      description: "Raqamli mahsulotlar va interaktiv veb-tajribalar yarataman hamda ma’lumotlarni amaliy natijalarga aylantiraman.",
+      description: "Men ma’lumotlarni tahlil qilib, ularni foydali qarorlar va aqlli yechimlarga aylantiraman. Har bir loyihada maqsadim — oddiy g‘oyalarni zamonaviy texnologiyalar yordamida haqiqiy natijaga aylantirish.",
       btnPrimary: "Loyihalarni ko‘rish",
       btnSecondary: "Bog‘lanish",
       btnDeveloper: "Loyihalarni ko‘rish",
       btnAnalyst: "Bog‘lanish",
-      location: "based in Tashkent, Uzbekistan.",
+      location: "Toshkent, O‘zbekiston",
       techSummary: "Python • SQL • React • Node.js"
     },
     about: {
@@ -94,12 +94,12 @@ export const portfolioContent = {
       intro: "👋 Hello, I'm Javohirbek Maxmutov",
       headlineLine1: "Creator",
       headlineLine2: "& Data Analyst",
-      description: "I build thoughtful digital experiences and turn complex data into meaningful insights.",
+      description: "I analyze data and turn it into useful decisions and smart solutions. In every project, my goal is to transform simple ideas into real results using modern technologies.",
       btnPrimary: "Explore My Work",
       btnSecondary: "Get in Touch",
       btnDeveloper: "Explore My Work",
       btnAnalyst: "Get in Touch",
-      location: "based in Tashkent, Uzbekistan.",
+      location: "Tashkent, Uzbekistan",
       techSummary: "Python • SQL • React • Node.js"
     },
     about: {

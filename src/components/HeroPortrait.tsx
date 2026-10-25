@@ -38,29 +38,24 @@ export const HeroPortrait: React.FC<HeroPortraitProps> = ({ src, alt }) => {
         const imgData = ctx.getImageData(0, 0, w, h);
         const data = imgData.data;
 
-        // Step 2: Accurate background identification (white backdrop + green halo)
+        // Step 2: Accurate background identification (white backdrop + green halo + transition arc)
         const isBg = (idx: number): boolean => {
           const r = data[idx];
           const g = data[idx + 1];
           const b = data[idx + 2];
 
-          // 1. Pure or near-white background
-          if (r > 230 && g > 230 && b > 230 && Math.abs(r - g) < 22 && Math.abs(g - b) < 22) {
+          // 1. Pure, near-white, or light off-white background
+          if (r > 212 && g > 212 && b > 202) {
             return true;
           }
 
-          // 2. Green aura / chroma glow (G dominates over R)
-          if (g > r + 3 && g > 50) {
+          // 2. Green aura / chroma glow (G strictly dominates over R and B)
+          if (g > r + 3 && g > b + 2 && g > 50) {
             return true;
           }
 
-          // 3. Bright pastel green or high luminance background tint
-          if (g > 145 && g >= r && g > b) {
-            return true;
-          }
-
-          // 4. Washed out near-white background
-          if (r > 215 && g > 215 && b > 210) {
+          // 3. Pale green-to-white transition zone (bright and G >= R, B)
+          if (g >= r && g >= b && g > 165) {
             return true;
           }
 
@@ -142,16 +137,19 @@ export const HeroPortrait: React.FC<HeroPortraitProps> = ({ src, alt }) => {
 
         for (let i = 0; i < totalPixels; i++) {
           const idx = i * 4;
+          const px = i % w;
+          const py = (i / w) | 0;
 
-          if (visited[i]) {
+          // Subject is entirely on the right 64% of the original photo; clear left side completely
+          if (visited[i] || px < w * 0.36) {
             data[idx + 3] = 0; // Transparent
           } else {
             const r = data[idx];
             const g = data[idx + 1];
             const b = data[idx + 2];
 
-            // Safety check for stray background green
-            if (g > r + 6 && g > 70) {
+            // Safety check for stray background green or faint halo arc
+            if ((g > r + 4 && g > b + 2 && g > 65) || (r > 215 && g > 215 && b > 205)) {
               data[idx + 3] = 0;
               continue;
             }
@@ -178,8 +176,6 @@ export const HeroPortrait: React.FC<HeroPortraitProps> = ({ src, alt }) => {
             data[idx + 2] = finalTone;
 
             // Track bounding box of subject
-            const px = i % w;
-            const py = (i / w) | 0;
             if (px < minX) minX = px;
             if (px > maxX) maxX = px;
             if (py < minY) minY = py;
@@ -190,34 +186,13 @@ export const HeroPortrait: React.FC<HeroPortraitProps> = ({ src, alt }) => {
 
         ctx.putImageData(imgData, 0, 0);
 
-        // Step 5: PERFECT SYMMETRICAL DEAD-CENTER CROPPING
-        // Calculate the horizontal center of the face/head region (top 35% of subject)
+        // Step 5: TIGHT CROP WITH OPTICAL LEFT-CENTER BALANCE
         if (hasSubjectPixels && maxX > minX && maxY > minY) {
-          const headBottomY = minY + (maxY - minY) * 0.35;
-          let headMinX = w, headMaxX = 0;
-          let headPixelCount = 0;
-
-          for (let py = minY; py <= headBottomY; py++) {
-            for (let px = minX; px <= maxX; px++) {
-              const idx = (py * w + px) * 4;
-              if (data[idx + 3] > 0) {
-                if (px < headMinX) headMinX = px;
-                if (px > headMaxX) headMaxX = px;
-                headPixelCount++;
-              }
-            }
-          }
-
-          // Find head/face center axis
-          const headCenterX = headPixelCount > 0 ? (headMinX + headMaxX) / 2 : (minX + maxX) / 2;
-
-          // Compute symmetrical width so headCenterX is EXACTLY at 50% dead-center
-          const distLeft = headCenterX - minX;
-          const distRight = maxX - headCenterX;
-          const maxHalfWidth = Math.max(distLeft, distRight);
-
-          const cropW = Math.round(maxHalfWidth * 2);
+          const subjW = maxX - minX + 1;
           const cropH = maxY - minY + 1;
+
+          // Add 8% right-side balance padding so the right-heavy torso shifts slightly left into dead-center
+          const cropW = Math.round(subjW * 1.08);
 
           const cropCanvas = document.createElement('canvas');
           cropCanvas.width = cropW;
@@ -225,13 +200,10 @@ export const HeroPortrait: React.FC<HeroPortraitProps> = ({ src, alt }) => {
           const cropCtx = cropCanvas.getContext('2d');
 
           if (cropCtx) {
-            // Offset source with optical left-shift (-8% of halfWidth) so face & body sit dead-center
-            const opticalShift = Math.round(maxHalfWidth * 0.08);
-            const destX = Math.max(0, Math.round(maxHalfWidth - distLeft - opticalShift));
             cropCtx.drawImage(
               canvas,
-              minX, minY, (maxX - minX + 1), cropH,
-              destX, 0, (maxX - minX + 1), cropH
+              minX, minY, subjW, cropH,
+              0, 0, subjW, cropH
             );
 
             const croppedUrl = cropCanvas.toDataURL('image/png');
@@ -270,27 +242,21 @@ export const HeroPortrait: React.FC<HeroPortraitProps> = ({ src, alt }) => {
   }, [src]);
 
   return (
-    <div className="relative group select-none pointer-events-none w-full flex flex-col items-center justify-center">
-      {/* Ambient glow */}
+    <div className="relative select-none pointer-events-none w-full flex flex-col items-center justify-center">
+      {/* Portrait — sized and proportioned for the Bazil.fr hero stage */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] max-w-[600px] h-[80%] max-h-[600px] rounded-full bg-gradient-to-b from-zinc-200/50 via-zinc-100/25 to-transparent blur-3xl pointer-events-none -z-10 group-hover:from-zinc-300/50 transition-all duration-700"
-        aria-hidden="true"
-      />
-
-      {/* Portrait — centered, large, fully visible within viewport */}
-      <div className="relative w-full max-w-[280px] sm:max-w-[380px] md:max-w-[460px] lg:max-w-[540px] xl:max-w-[600px] mx-auto flex items-end justify-center"
-        style={{ height: 'clamp(260px, 52vh, 560px)' }}
+        className="relative w-full max-w-[300px] sm:max-w-[360px] md:max-w-[410px] lg:max-w-[450px] mx-auto flex items-start justify-center h-[270px] sm:h-[320px] md:h-[360px] lg:h-[400px]"
       >
         <img
           src={cutoutSrc || src}
           alt={alt}
-          className={`w-full h-full pointer-events-auto cursor-pointer transition-all duration-500 ease-out group-hover:scale-[1.012] group-hover:contrast-[1.04] ${
-            cutoutSrc ? 'object-contain object-bottom' : 'object-cover object-[center_10%]'
-          } ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+          className={`w-full h-full transition-all duration-500 ease-out object-contain object-top ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
           style={{
-            maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
-            filter: 'drop-shadow(0 18px 36px rgba(9,9,11,0.09))',
+            maskImage: 'linear-gradient(to bottom, black 76%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 76%, transparent 100%)',
+            filter: 'drop-shadow(0 16px 32px rgba(9,9,11,0.08))',
           }}
         />
       </div>

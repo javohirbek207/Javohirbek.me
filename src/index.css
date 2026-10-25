@@ -74,15 +74,26 @@
   transition: all 0.3s ease;
 }
 
+.text-stroke-white {
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.92);
+  color: transparent;
+}
+
 @media (min-width: 640px) {
   .text-stroke-title {
     -webkit-text-stroke: 2px #09090b;
+  }
+  .text-stroke-white {
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.92);
   }
 }
 
 @media (min-width: 1024px) {
   .text-stroke-title {
     -webkit-text-stroke: 2.5px #09090b;
+  }
+  .text-stroke-white {
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.92);
   }
 }
 
