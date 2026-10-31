@@ -13,16 +13,22 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>(() => {
-    const saved = localStorage.getItem('jm_portfolio_lang');
-    if (saved === 'uz' || saved === 'en') {
-      return saved;
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      const saved = localStorage.getItem('jm_portfolio_lang');
+      if (saved === 'uz' || saved === 'en') {
+        return saved;
+      }
     }
-    return 'uz'; // Default language is Uzbek (Latin) as requested
+    return 'en'; // Match default <html lang="en"> metadata for SEO & crawlers
   });
 
   useEffect(() => {
-    localStorage.setItem('jm_portfolio_lang', language);
-    document.documentElement.lang = language;
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('jm_portfolio_lang', language);
+    }
+    if (typeof document !== 'undefined') {
+      document.documentElement.lang = language;
+    }
   }, [language]);
 
   const setLanguage = (lang: Language) => {
